@@ -6,11 +6,11 @@ const Home = () => {
       <Navbar />
 
       <section className="px-12 py-20">
-        <p className="text-sm uppercase tracking-widest text-red-500">
+        <p className="text-sm uppercase tracking-widest text-red-500 font-bold">
           Your daily serving of inspiration
         </p>
 
-        <h1 className="mt-6 text-6xl font-bold">
+        <h1 className="mt-6 text-6xl font-bold tracking-tighter ">
           Make something
           <br />
           <i>delicious</i> today.
