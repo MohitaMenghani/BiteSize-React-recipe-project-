@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import CravingSection from "../components/CravingSection";
 
 const Home = () => {
   return (
@@ -10,7 +11,7 @@ const Home = () => {
           Your daily serving of inspiration
         </p>
 
-        <h1 className="mt-6 text-6xl font-bold tracking-tighter ">
+        <h1 className="mt-6 text-6xl font-bold tracking-tighter lg:px-12">
           Make something
           <br />
           <i>delicious</i> today.
@@ -21,6 +22,7 @@ const Home = () => {
           cooking feel like yours.
         </p>
       </section>
+      <CravingSection />
     </div>
   );
 };
