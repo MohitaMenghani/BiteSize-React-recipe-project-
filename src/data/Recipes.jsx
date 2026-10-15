@@ -76,3 +76,5 @@ const recipes = [
     avatar: "https://i.pravatar.cc/80?img=44",
   },
 ];
+
+export default recipes;

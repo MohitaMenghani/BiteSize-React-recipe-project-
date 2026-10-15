@@ -30,9 +30,13 @@ const CravingSection = () => {
           <i className="ri-arrow-right-line"></i>
         </button>
       </div>
-      
-      {/* recipe cards */}
 
+      {/* recipe cards */}
+      {/* <div className="grid grid-cols-3 gap-6">
+        {recipes.map((recipe) => (
+          <RecipeCard key={recipe.id} recipe={recipe} />
+        ))}
+      </div> */}
       {/* animation / slider */}
     </section>
   );
