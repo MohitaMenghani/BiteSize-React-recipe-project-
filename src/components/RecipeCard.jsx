@@ -1,8 +1,9 @@
-import React, { useState } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const RecipeCard = ({ recipe }) => {
   const [saved, setSaved] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <article className="group overflow-hidden rounded-2xl border border-[#e4e6df] bg-white transition duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div className="relative h-52 overflow-hidden">
