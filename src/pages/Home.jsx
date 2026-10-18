@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import CravingSection from "../components/CravingSection";
-
+import SponserRecipes from "../components/SponserRecipes";
 const Home = () => {
   return (
     <div>
@@ -23,6 +23,7 @@ const Home = () => {
         </p>
       </section>
       <CravingSection />
+      <SponserRecipes />
     </div>
   );
 };

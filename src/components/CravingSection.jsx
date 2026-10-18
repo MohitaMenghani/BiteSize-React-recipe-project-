@@ -33,7 +33,7 @@ const filteredRecipes = recipes.filter((recipe) => {
           </p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 mb-8">
           <button
             type="button"
             aria-label="Previous recipes"
