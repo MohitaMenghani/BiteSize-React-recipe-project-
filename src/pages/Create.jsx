@@ -2,54 +2,59 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 const Create = () => {
-  const initialIngredients = [{ amount: "", name: "" }];
-const [title, setTitle] = useState("");
-const [description, setDescription] = useState("");
-const [time, setTime] = useState("30 min");
-const [servings, setServings] = useState("2 servings");
-const [difficulty, setDifficulty] = useState("Easy");
-const [ingredients, setIngredients] = useState(initialIngredients);
-// const [steps, setSteps] = useState(initialSteps);
-const [tags, setTags] = useState(["Dinner"]);
-const [image, setImage] = useState("");
-const [message, setMessage] = useState("");
-const availableTags = ["Breakfast", "Lunch", "Dinner", "Vegetarian", "Sweet"];
+  const initialIngredients = [
+    { amount: "", name: "" },
+    { amount: "", name: "" },
+    { amount: "", name: "" },
+  ];
+  const initialSteps = ["Tell us how this recipe comes together."];
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [time, setTime] = useState("30 min");
+  const [servings, setServings] = useState("2 servings");
+  const [difficulty, setDifficulty] = useState("Easy");
+  const [ingredients, setIngredients] = useState(initialIngredients);
+  const [steps, setSteps] = useState(initialSteps);
+  const [tags, setTags] = useState(["Dinner"]);
+  const [image, setImage] = useState("");
+  const [message, setMessage] = useState("");
+  const availableTags = ["Breakfast", "Lunch", "Dinner", "Vegetarian", "Sweet"];
 
-const updateIngredient = (index, key, value) =>
-  setIngredients((items) =>
-    items.map((item, i) => (i === index ? { ...item, [key]: value } : item)),
-  );
-const updateStep = (index, value) =>
-  setSteps((items) => items.map((item, i) => (i === index ? value : item)));
-const addIngredient = () =>
-  setIngredients((items) => [...items, { amount: "", name: "" }]);
-const addStep = () => setSteps((items) => [...items, ""]);
-const removeIngredient = (index) =>
-  setIngredients((items) =>
-    items.length > 1 ? items.filter((_, i) => i !== index) : items,
-  );
-const removeStep = (index) =>
-  setSteps((items) =>
-    items.length > 1 ? items.filter((_, i) => i !== index) : items,
-  );
-const toggleTag = (tag) =>
-  setTags((items) =>
-    items.includes(tag)
-      ? items.filter((item) => item !== tag)
-      : [...items, tag],
-  );
-const handleImage = (event) => {
-  const file = event.target.files[0];
-  if (file) setImage(URL.createObjectURL(file));
-};
-const save = (event) => {
-  event.preventDefault();
-  setMessage(
-    title.trim()
-      ? "Your recipe is ready to share. Nice work!"
-      : "Add a recipe name before publishing.",
-  );
-};
+  const updateIngredient = (index, key, value) =>
+    setIngredients((items) =>
+      items.map((item, i) => (i === index ? { ...item, [key]: value } : item)),
+    );
+  const updateStep = (index, value) =>
+    setSteps((items) => items.map((item, i) => (i === index ? value : item)));
+  const addIngredient = () =>
+    setIngredients((items) => [...items, { amount: "", name: "" }]);
+  const addStep = () => setSteps((items) => [...items, ""]);
+  const removeIngredient = (index) =>
+    setIngredients((items) =>
+      items.length > 1 ? items.filter((_, i) => i !== index) : items,
+    );
+  const removeStep = (index) =>
+    setSteps((items) =>
+      items.length > 1 ? items.filter((_, i) => i !== index) : items,
+    );
+  const toggleTag = (tag) =>
+    setTags((items) =>
+      items.includes(tag)
+        ? items.filter((item) => item !== tag)
+        : [...items, tag],
+    );
+  const handleImage = (event) => {
+    const file = event.target.files[0];
+    if (file) setImage(URL.createObjectURL(file));
+  };
+  const save = (event) => {
+    event.preventDefault();
+    setMessage(
+      title.trim()
+        ? "Your recipe is ready to share. Nice work!"
+        : "Add a recipe name before publishing.",
+    );
+  };
   return (
     <div>
       <div className="min-h-screen bg-[#f8f7f2]">
@@ -254,6 +259,114 @@ const save = (event) => {
                 ＋ Add ingredient
               </button>
             </div>
+            {ingredients.map((ingredient, index) => (
+              <div className="mt-2.25 flex items-center gap-2" key={index}>
+                <input
+                  className="w-full max-w-28.75 flex-1 rounded-[10px] border border-[#dedfd6] bg-[#fbfbf7] px-3.25 py-3 text-[13px] text-[#25322c] outline-none transition focus:border-[#e9694d] focus:ring-[3px] focus:ring-[#e9694d]/10"
+                  value={ingredient.amount}
+                  onChange={(e) =>
+                    updateIngredient(index, "amount", e.target.value)
+                  }
+                  placeholder="Amount"
+                  aria-label={`Ingredient ${index + 1} amount`}
+                />
+                <input
+                  className="w-full min-w-0 flex-1 rounded-[10px] border border-[#dedfd6] bg-[#fbfbf7] px-3.25 py-3 text-[13px] text-[#25322c] outline-none transition focus:border-[#e9694d] focus:ring-[3px] focus:ring-[#e9694d]/10"
+                  value={ingredient.name}
+                  onChange={(e) =>
+                    updateIngredient(index, "name", e.target.value)
+                  }
+                  placeholder={index < 2 ? "Ingredient" : "e.g. fresh basil"}
+                  aria-label={`Ingredient ${index + 1}`}
+                />
+                <button
+                  className="flex h-7.25 w-7.25 shrink-0 items-center justify-center rounded-full border-0 bg-[#f7eeea] text-[17px] leading-none text-[#c9533d] transition hover:bg-[#f1ddd5]"
+                  type="button"
+                  onClick={() => removeIngredient(index)}
+                  aria-label="Remove ingredient"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+            <div className="mt-7.75 flex items-center justify-between">
+              <h3>Method</h3>
+              <button
+                className="border-0 bg-transparent p-1 text-xs font-bold text-[#c9533d] hover:underline"
+                type="button"
+                onClick={addStep}
+              >
+                ＋ Add step
+              </button>
+            </div>
+            {steps.map((step, index) => (
+              <div className="mt-2.25 flex items-center gap-2" key={index}>
+                <span className="flex h-6.75 w-6.75 shrink-0 items-center justify-center rounded-full bg-[#dfeadd] text-xs font-bold text-[#55705a]">
+                  {index + 1}
+                </span>
+                <textarea
+                  className="min-h-12.25 w-full flex-1 resize-y rounded-[10px] border border-[#dedfd6] bg-[#fbfbf7] px-3.25 py-3 text-[13px] leading-normal text-[#25322c] outline-none transition focus:border-[#e9694d] focus:ring-[3px] focus:ring-[#e9694d]/10"
+                  value={step}
+                  onChange={(e) => updateStep(index, e.target.value)}
+                  placeholder="Describe this step..."
+                  aria-label={`Step ${index + 1}`}
+                />
+                <button
+                  className="flex h-7.25] w-7.25 shrink-0 items-center justify-center rounded-full border-0 bg-[#f7eeea] text-[17px] leading-none text-[#c9533d] transition hover:bg-[#f1ddd5]"
+                  type="button"
+                  onClick={() => removeStep(index)}
+                  aria-label="Remove step"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+            <div className="mt-7.75 flex items-center justify-between">
+              <h3>Give it a mood</h3>
+              <p>Pick all that fit</p>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {availableTags.map((tag) => (
+                <button
+                  className={`rounded-[30px] border px-3 py-2 text-[11px] transition ${
+                    tags.includes(tag)
+                      ? "border-[#dfeadd] bg-[#dfeadd] font-bold text-[#55705a]"
+                      : "border-[#d7dcd3] bg-transparent text-[#78827b] hover:border-[#b8c9b4]"
+                  }`}
+                  type="button"
+                  key={tag}
+                  onClick={() => toggleTag(tag)}
+                >
+                  {tags.includes(tag) ? "✓ " : ""}
+                  {tag}
+                </button>
+              ))}
+            </div>
+            <div className="mt-8 flex items-center justify-end gap-3 border-t border-[#e6e7df] pt-5.75">
+              <button
+                className="rounded-[9px] border border-[#d7dcd3] bg-transparent px-4.75 py-3 text-xs font-bold text-[#78827b] transition hover:-translate-y-0.5 hover:bg-[#f8f7f1]"
+                type="button"
+                onClick={() =>
+                  setMessage("Draft saved — you can come back anytime.")
+                }
+              >
+                Save draft
+              </button>
+              <button
+                className="rounded-[9px] border-0 bg-[#e9694d] px-4.75 py-3 text-xs font-bold text-white shadow-lg shadow-[#c9533d]/20 transition hover:-translate-y-0.5 hover:shadow-xl"
+                type="submit"
+              >
+                Publish recipe ↗
+              </button>
+            </div>
+            {message && (
+              <div
+                className="mt-3.75 rounded-lg bg-[#55705a] px-3.5 py-2.75 text-xs text-white"
+                role="status"
+              >
+                {message}
+              </div>
+            )}
           </form>
         </div>
       </div>
