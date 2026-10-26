@@ -368,12 +368,12 @@ const Create = () => {
               </div>
             )}
           </form>
-          <aside className="sticky top-[100px]" id="preview">
-            <div className="my-[5px] mb-3 text-[11px] font-bold uppercase tracking-[1.4px] text-[#78827b]">
+          <aside className="sticky top-25" id="preview">
+            <div className="my-1.25 mb-3 text-[11px] font-bold uppercase tracking-[1.4px] text-[#78827b]">
               Live preview
             </div>
-            <article className="relative min-h-[500px] overflow-hidden rounded-[22px] bg-[#dfeadd] p-[13px] max-[850px]:min-h-0">
-              <div className="relative flex h-[235px] items-center justify-center overflow-hidden rounded-[15px] bg-[#d2dfce] max-[850px]:h-[250px]">
+            <article className="relative min-h-125 overflow-hidden rounded-[22px] bg-[#dfeadd] p-3.25 max-[850px]:min-h-0">
+              <div className="relative flex h-58.75 items-center justify-center overflow-hidden rounded-[15px] bg-[#d2dfce] max-[850px]:h-62.5">
                 {image ? (
                   <img
                     src={image}
@@ -388,15 +388,15 @@ const Create = () => {
                   </span>
                 )}
               </div>
-              <div className="relative z-[1] px-[13px] pb-3 pt-[22px]">
-                <h2 className="m-0 max-w-[380px] font-serif text-[32px] font-bold leading-[1.03] tracking-normal text-[#25322c]">
+              <div className="relative z-1 px-3.25 pb-3 pt-5.5">
+                <h2 className="m-0 max-w-95 font-serif text-[32px] font-bold leading-[1.03] tracking-normal text-[#25322c]">
                   {title || "Your recipe name"}
                 </h2>
-                <p className="my-3 mb-[18px] text-[13px] leading-[1.55] text-[#637468]">
+                <p className="my-3 mb-4.5 text-[13px] leading-[1.55] text-[#637468]">
                   {description ||
                     "A little note about your dish will appear here as you write it."}
                 </p>
-                <div className="flex flex-wrap gap-6 border-t border-[#55705a]/20 pt-[14px]">
+                <div className="flex flex-wrap gap-6 border-t border-[#55705a]/20 pt-3.5">
                   <div className="text-[11px] text-[#637468]">
                     <strong className="mb-0.5 block text-sm font-bold text-[#25322c]">
                       {time}
