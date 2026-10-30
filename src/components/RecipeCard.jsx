@@ -1,9 +1,12 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFavourites } from "../hooks/useFavourite.js";
 
 const RecipeCard = ({ recipe }) => {
-  const [saved, setSaved] = useState(false);
   const navigate = useNavigate();
+
+  const { toggleFavourite, isFavourite } = useFavourites();
+  const saved = isFavourite(recipe.id);
+
   return (
     <article className="group overflow-hidden rounded-2xl border border-[#e4e6df] bg-white transition duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div className="relative h-52 overflow-hidden">
@@ -15,7 +18,7 @@ const RecipeCard = ({ recipe }) => {
 
         <button
           type="button"
-          onClick={() => setSaved((previous) => !previous)}
+          onClick={() => toggleFavourite(recipe.id)}
           aria-label={saved ? "Remove from favourites" : "Save to favourites"}
           aria-pressed={saved}
           className={`absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition ${

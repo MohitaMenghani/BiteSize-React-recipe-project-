@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import RecipeCard from "../components/RecipeCard";
 import recipes from "../data/Recipes";
-import { useFavourites } from "../hooks/useFavourites";
+import { useFavourites } from "../hooks/useFavourite.js";
 
 const Favourite = () => {
   const { favouriteIds } = useFavourites();
